@@ -1,0 +1,57 @@
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'polls/style.css' %}">
+
+{# Load the tag library #}
+{% load bootstrap5 %}
+
+{# Load CSS and JavaScript #}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+{# Display django.contrib.messages as Bootstrap alerts #}
+{% bootstrap_messages %}
+
+<style>
+ul#nav li {
+  display:inline;
+}
+
+footer {
+  position: absolute;
+  right: 0;bottom:0;left:0;
+}
+</style>
+
+<body style="background-color:powderblue;">
+
+<div class="position-absolute top-10 start-50 translate-middle-x">
+<nav class="nav bg-powderblue justify-content-center">
+    <ul id="nav" class="list-unstyled">
+       <li><a href="deepthoughts"> Submit a deep thought </a></li>
+       &nbsp &nbsp &nbsp<li> <a href="deepthoughts/list">Deep thought list</a></li>
+       &nbsp &nbsp &nbsp<li> <a href=/polls>View questions</a></li>
+    </ul>
+</nav>
+
+<center><h1>Question List</h1></center>
+<center>Click on the question to vote</center>
+</br>
+
+{% if latest_question_list %}
+    <ul>
+    {% for question in latest_question_list %}
+	<li><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></li>
+{% endfor %}
+    </ul>
+{% else %}
+    <p>No polls are available.</p>
+{% endif %}
+</div>
+</body>
+
+<footer>
+  Author: Sofia Yang
+  &nbsp &nbsp <a href="mailto:syy6zn@virginia.edu">syy6zn@virginia.edu</a>
+  &nbsp &nbsp &copy; <em id="date"></em>2022
+</footer>

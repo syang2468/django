@@ -1,0 +1,55 @@
+{# Load the tag library #}
+{% load bootstrap5 %}
+
+{# Load CSS and JavaScript #}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+{# Display django.contrib.messages as Bootstrap alerts #}
+{% bootstrap_messages %}
+
+<style>
+ul#nav li {
+  display:inline;
+}
+
+footer {
+  position: absolute;
+  right: 0;bottom:0;left:0;
+}
+</style>
+
+<body style="background-color:powderblue;">
+
+
+<nav class="nav bg-powderblue justify-content-center">
+    <ul id="nav" class="list-unstyled">
+       <li><a href=/polls/deepthoughts/> Submit a deep thought </a></li>
+       &nbsp &nbsp &nbsp<li> <a href=/polls/deepthoughts/list>Deep thought list</a></li>
+       &nbsp &nbsp &nbsp<li> <a href=/polls>View questions</a></li>
+       &nbsp &nbsp &nbsp<li> <a href=results>View voting results</a></li>
+    </ul>
+</nav>
+
+<div class="position-absolute top-10 start-50 translate-middle-x">
+<form action="{% url 'polls:vote' question.id %}" method="post">
+{% csrf_token %}
+<fieldset>
+    <legend><h1>{{ question.question_text }}</h1></legend>
+    {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+    {% for choice in question.choice_set.all %}
+        <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
+        <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br>
+    {% endfor %}
+</fieldset>
+</br>
+<input type="submit" value="Vote">
+</form>
+</div>
+</body>
+
+<footer>
+  Author: Sofia Yang
+  &nbsp &nbsp <a href="mailto:syy6zn@virginia.edu">syy6zn@virginia.edu</a>
+  &nbsp &nbsp &copy; <em id="date"></em>2022
+</footer>

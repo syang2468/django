@@ -1,0 +1,50 @@
+{# Load the tag library #}
+{% load bootstrap5 %}
+
+{# Load CSS and JavaScript #}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+{# Display django.contrib.messages as Bootstrap alerts #}
+{% bootstrap_messages %}
+
+<style>
+ul#nav li {
+  display:inline;
+}
+
+footer {
+  position: absolute;
+  right: 0;bottom:0;left:0;
+}
+</style>
+
+<nav class="nav bg-powderblue justify-content-center">
+    <ul id="nav" class="list-unstyled">
+       <li><a href=/polls/deepthoughts> Submit a deep thought </a></li>
+       &nbsp &nbsp &nbsp<li> <a href=/polls>View questions</a></li>
+    </ul>
+</nav>
+
+
+<body style="background-color:powderblue;">
+<div class="position-absolute top-10 start-50 translate-middle-x">
+<h1> Deep Thought List </h1>
+
+{% if deepthought_list %}
+    <ul>
+    {% for thought in deepthought_list %}
+        <li>{{ thought.thought_text }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No deepthoughts are available.</p>
+{% endif %}
+</div>
+</body>
+
+<footer>
+  Author: Sofia Yang
+  &nbsp &nbsp <a href="mailto:syy6zn@virginia.edu">syy6zn@virginia.edu</a>
+  &nbsp &nbsp &copy; <em id="date"></em>2022
+</footer>

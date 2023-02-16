@@ -1,0 +1,47 @@
+{# Load the tag library #}
+{% load bootstrap5 %}
+
+{# Load CSS and JavaScript #}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+{# Display django.contrib.messages as Bootstrap alerts #}
+{% bootstrap_messages %}
+
+<style>
+ul#nav li {
+  display:inline;
+}
+
+footer {
+  position: absolute;
+  right: 0;bottom:0;left:0;
+}
+</style>
+
+<nav class="nav bg-powderblue justify-content-center">
+    <ul id="nav" class="list-unstyled">
+       &nbsp &nbsp &nbsp<li> <a href=/polls/deepthoughts/list>Deep thought list</a></li>
+       &nbsp &nbsp &nbsp<li> <a href=/polls>View questions</a></li>
+    </ul>
+</nav>
+
+<body style="background-color:powderblue;">
+<div class="position-absolute top-50 start-50 translate-middle">
+<h1>Deep Thought</h1>
+<h5>Enter your deep thought here</h5>
+<form method="post" class="form">  
+  {% csrf_token %}
+     <label for="thought">Deep Thought:</label>
+     <input type="text" id="thought" name="thought"><br>
+  {% buttons %}
+     </br> <input type="submit" value="Submit">
+  {% endbuttons %}
+</form>
+</div>
+</br>
+<footer>
+  Author: Sofia Yang
+  &nbsp &nbsp <a href="mailto:syy6zn@virginia.edu">syy6zn@virginia.edu</a>
+  &nbsp &nbsp &copy; <em id="date"></em>2022
+</footer>
